@@ -1,0 +1,26 @@
+version: '3'
+
+volumes:
+  postgres_data:
+
+services:
+  web:
+    build: .
+    ports:
+        - 8000:8000
+    environment:
+      - DATABASE_PASSWORD=postgrespass
+    tty: True
+    stdin_open:  True
+    depends_on: 
+        - db
+    links: 
+        - db
+    
+
+  db:
+    image: postgres:11
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - 'POSTGRES_HOST_AUTH_METHOD=trust'
