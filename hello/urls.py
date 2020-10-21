@@ -17,5 +17,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('',views.coupon,name="index")
+    path('index',views.coupon,name="index")
 ]
