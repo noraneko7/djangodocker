@@ -9,6 +9,6 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /Django
 COPY Pipfile Pipfile.lock /
 RUN pipenv install --system
-COPY . /Django
+COPY . .
 
 
