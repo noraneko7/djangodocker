@@ -1,22 +1,22 @@
 # Django/PostgreSQL/Docker/TravisCI/HEROKU
-##DjangoとPostgreSQLをdocker-composeで起動(local開発)
+## DjangoとPostgreSQLをdocker-composeで起動(local開発)
 
-###1,Dockerfile、docker-compose.yml、Pipfile、Pipfile.lock、runtime.txt、Procfileを作業フォルダ配下に設置
+### 1,Dockerfile、docker-compose.yml、Pipfile、Pipfile.lock、runtime.txt、Procfileを作業フォルダ配下に設置
 
-###2,pipenvで仮想環境を構築
+### 2,pipenvで仮想環境を構築
 ```
 $pip install pipenv
 $pipenv install
 ```
 
-###3,Djangoプロジェクト作成
+### 3,Djangoプロジェクト作成
 ```
 $pipenv shell
 django-admin startproject プロジェクト名 .
 exit
 ```
 
-###4,プロジェクト内のsettings.pyを変更
+### 4,プロジェクト内のsettings.pyを変更
 ```
 ALLOWED_HOSTS = ['*']
 
@@ -57,11 +57,11 @@ if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
 ```
-###5,プロジェクトのルートディレクトリにstaticディレクトリを作成し、その中に.gitkeepファイルを作成
+### 5,プロジェクトのルートディレクトリにstaticディレクトリを作成し、その中に.gitkeepファイルを作成
 - herokuで静的ファイルを配信するのにstaticディレクトリを作成しなければならないが、<br>
 　空のディレクトリはgitで管理できないため、.gitkeepという空のファイルを作成
  
-###6,開発環境用の設定ファイルを作成
+### 6,開発環境用の設定ファイルを作成
 - settiongs.pyと同じディレクトリにlocal_settings.pyを作成
 プロジェクトフォルダ/local_settings.py
 ```
@@ -85,7 +85,7 @@ DEBUG = True
 
 ```
 
-###(ローカル開発)docker-composeでコンテナ起動
+### (ローカル開発)docker-composeでコンテナ起動
 ```
 $docker-compose up --build -d　#コンテナ起動
 $docker-compose exec web python manage.py migrate #DBの初期化
@@ -97,11 +97,11 @@ $docker-compose ecec web python manage.py runserver 0.0.0.0:8000 #サーバー�
 ```
 $docker-compose exec web bash
 ```
-###(ローカル開発)localhostにアクセス
+### (ローカル開発)localhostにアクセス
 http://localhost:8000 にアクセスし、welcome画面が出ればOK
 http://localhost:8000/admin にアクセスし、必要事項を入力
 
-##CD/CIの設定
+### CD/CIの設定
 ## heroku clを自分の環境にインストール
 ## TravisCIとHEROKUの設定
 ＜TravisCI＞
